@@ -78,14 +78,14 @@ router.post("/login", async (req, res) => {
     if (!isPasswordCorrect)
       return res.status(400).json({ message: "Invalid Credentials" });
 
-    const token = generateToken(user._id);
+    const token = generateToken(existingEmail._id);
     res.status(200).json({
       token,
       user: {
-        _id: user._id,
-        username: user.username,
-        email: user.email,
-        profileImage: user.profileImage,
+        _id: existingEmail._id,
+        username: existingEmail.username,
+        email: existingEmail.email,
+        profileImage: existingEmail.profileImage,
       },
     });
   } catch (error) {
